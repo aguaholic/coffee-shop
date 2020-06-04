@@ -58,6 +58,7 @@ export const query = graphql`
                     image {
                         fluid(maxHeight: 426) {
                             ...GatsbyContentfulFluid
+                            src
                         }
                     }
                 }

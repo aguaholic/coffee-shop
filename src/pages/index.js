@@ -5,6 +5,8 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Info from '../components/Home/Info'
 import Menu from '../components/Home/Menu'
+import Products from '../components/Home/Products'
+import Contact from '../components/Home/Contact'
 
 const IndexPage = ({ data }) => (
     <Layout>
@@ -15,6 +17,8 @@ const IndexPage = ({ data }) => (
         />
         <Info />
         <Menu items={data.menu} />
+        <Products products={data.products} />
+        <Contact />
     </Layout>
 )
 
@@ -42,6 +46,20 @@ export const query = graphql`
                         description
                     }
                     id: contentful_id
+                }
+            }
+        }
+        products: allContentfulCoffeeProduct {
+            edges {
+                node {
+                    id: contentful_id
+                    title
+                    price
+                    image {
+                        fluid(maxHeight: 426) {
+                            ...GatsbyContentfulFluid
+                        }
+                    }
                 }
             }
         }
